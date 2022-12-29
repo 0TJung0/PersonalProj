@@ -41,7 +41,7 @@ public class SingInController extends HttpServlet{
 		String grade= req.getParameter("grade");
 		String self= req.getParameter("self");
 		
-		SingInDAO dao= new SingInDAO();
+		SingInDAO dao= new SingInDAO(getServletContext());
 		UserDTO dto= new UserDTO();
 		dto.setEmail(email);
 		dto.setPhone(phoneNumber);

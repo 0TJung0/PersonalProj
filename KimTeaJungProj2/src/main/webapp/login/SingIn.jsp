@@ -38,7 +38,7 @@
         <div class="col-md-7 col-lg-6 ml-auto">
             <form method="post" action="<c:url value="/Login/SingIn.do"/>">
                 <div class="row">
-\
+
 	                    <!-- Email Address -->
 	                    <div class="input-group col-lg-12 mb-4">
 	                        <div class="input-group-prepend">
@@ -71,6 +71,7 @@
 	                    </div>
 					
 	                    <!-- Password -->
+	                    <h6>비밀번호는 !@#$%^&+=을포함 8자 이상을 작성해주세요</h6>
 	                    <div class="input-group col-lg-12 mb-4">
 	                        <div class="input-group-prepend">
 	                            <span class="input-group-text bg-white px-4 border-md border-right-0">
@@ -145,7 +146,7 @@
 	                        <input class="btn btn-primary btn-block py-2" type="submit" value="Create your account">
 	                    </div>
                
-              \
+              
                 
                     <!-- Divider Text -->
                     <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">

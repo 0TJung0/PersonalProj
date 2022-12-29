@@ -14,23 +14,37 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import data.BoardDTO;
+import jakarta.servlet.ServletContext;
 import util.DaoService;
 
 public class BoardDAO implements DaoService<BoardDTO>{
 	private Connection conn;
 	private ResultSet rs;
 	private PreparedStatement psmt;
-	@Override
-	public void close() {
+	
+	
+	
+	
+	public BoardDAO(ServletContext context) {
 		try {
 			//커넥션 풀 사용.즉 커넥션 풀에서 커넥션 객체 가져오기.
-			Context ctx= new InitialContext();
-			DataSource source=(DataSource)ctx.lookup("java:comp/env/SPRING");
+			//Context ctx= new InitialContext();
+			//DataSource source=(DataSource)ctx.lookup("java:comp/env/SPRING");
+			DataSource source= (DataSource)context.getAttribute("DataSource");
 			conn= source.getConnection();
 			System.out.println(conn);
 		}
-		catch(NamingException|SQLException e) {e.printStackTrace();}
-		
+		catch(SQLException e) {e.printStackTrace();}
+	}
+
+	@Override
+	public void close() {
+		try {
+			if(rs !=null) rs.close();//메모리 해제
+			if(psmt !=null) psmt.close();//메모리 해제
+			if(conn !=null) conn.close();//커넥션 풀에 커넥션 객체 반납-메모리 해제 아님]
+		}
+		catch(SQLException e) {e.printStackTrace();}	
 	}
 
 	@Override
@@ -45,6 +59,7 @@ public class BoardDAO implements DaoService<BoardDTO>{
 			psmt.setString(1, map.get("start").toString());
 			psmt.setString(2, map.get("end").toString());
 			rs = psmt.executeQuery();
+			
 			while(rs.next()) {
 				BoardDTO dto = new BoardDTO();
 				dto.setNo(rs.getString(1));
@@ -58,6 +73,7 @@ public class BoardDAO implements DaoService<BoardDTO>{
 			}
 		}
 		catch(SQLException e) {e.printStackTrace();}
+		
 		return records;
 	}
 

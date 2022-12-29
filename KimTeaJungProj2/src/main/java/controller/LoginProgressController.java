@@ -27,9 +27,10 @@ public class LoginProgressController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		SingInDAO dao= new SingInDAO();
+		SingInDAO dao= new SingInDAO(getServletContext());
 		
 		boolean check=dao.isMember(email,password);
+		
 		dao.close();
 		if(check) {
 			

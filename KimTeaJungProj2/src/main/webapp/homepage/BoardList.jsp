@@ -42,7 +42,9 @@
 	a:hover{
 		color:yellow;
 	}
-
+	.container > *{
+		z-index: 1;
+	}
 </style>
    </head>
    <body>
@@ -77,51 +79,49 @@
             </div>
          </div>
 
-<div class="container" style="margin-top: 65px;">
-
-	<div class="jumbotron bg-warning">
-		<h1>자료실 목록 <small>모든 자료실의 목록입니다</small></h1>
-	</div>
-	<div class="text-right mb-2">
-		<a href="<c:url value="/DataRoom/Write.kosmo"/>" class="btn btn-danger">자료등록</a>
-	</div>
-	<table class="table table-dark table-hover text-center">
-		<thead>
-			<tr>
-				<th class="col-1">번호</th>
-				<th>제목</th>
-				<th class="col-2">올린이</th>
-				<th class="col-2">자료파일</th>
-				<th class="col-1">다운수</th>
-				<th class="col-2">등록일</th>
-			</tr>
-		</thead>
-		<tbody class="table-sm down-file-body">
-			<c:if test="${empty records }" var="isEmpty">
-				<tr>
-					<td colspan="6">등록된 자료가 없습니다.</td>
-				</tr>
-			</c:if>
-			<c:if test="${not isEmpty }">
-				<c:forEach var="record" items="${records}" varStatus="loop">
+		<div class="container" style="margin-top: 65px;">
+		
+			
+			<div class="text-right mb-2">
+				<a href="<c:url value="/DataRoom/Write.kosmo"/>" class="btn btn-danger">자료등록</a>
+			</div>
+			<table class="table table-dark table-hover text-center">
+				<thead>
 					<tr>
-						<td>${record.no }</td>
-						<td class="text-left"><a href="<c:url value="/DataRoom/View.kosmo?no=${record.no}&nowPage="/><c:out value="${param.nowPage}" default="1"/>">${record.title}</a></td>
-						<td>${record.email}</td>
-						
-						<td id="down-count${loop.count}">${record.hitCount }</td>
-						<td>${record.heartCount}</td>
-						<td>${record.postDate}</td>
-					</tr>	
-				</c:forEach>		
-			</c:if>
-		</tbody>
-	</table>
-	<!-- 페이징 출력 -->
-	${pagingString}
+						<th class="col-1">번호</th>
+						<th>제목</th>
+						<th class="col-2">올린이</th>
+						<th class="col-2">클릭수</th>
+						<th class="col-1">좋아요</th>
+						<th class="col-2">등록일</th>
+					</tr>
+				</thead>
+				<tbody class="table-sm down-file-body">
+					<c:if test="${empty records }" var="isEmpty">
+						<tr>
+							<td colspan="6">등록된 자료가 없습니다.</td>
+						</tr>
+					</c:if>
+					<c:if test="${not isEmpty }">
+						<c:forEach var="record" items="${records}" varStatus="loop">
+							<tr>
+								<td>${record.no }</td>
+								<td class="text-left"><a href="<c:url value="/Notice/View.do?no=${record.no}&nowPage="/><c:out value="${param.nowPage}" default="1"/>">${record.title}</a></td>
+								<td>${record.email}</td>
+								
+								<td id="down-count${loop.count}">${record.hitCount }</td>
+								<td>${record.heartCount}</td>
+								<td>${record.postDate}</td>
+							</tr>	
+						</c:forEach>		
+					</c:if>
+				</tbody>
+			</table>
+			<!-- 페이징 출력 -->
+			${pagingString}
 	
-</div>
-
+			</div>
+		</div>
 <script>
 	
 	var tbody = document.querySelector(".down-file-body");

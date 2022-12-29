@@ -21,15 +21,16 @@ public class SingInDAO implements DaoService<UserDTO>{
 	private ResultSet rs;
 	private PreparedStatement psmt;
 	
-	public SingInDAO() {
+	public SingInDAO(ServletContext context){
 		try {
 			//커넥션 풀 사용.즉 커넥션 풀에서 커넥션 객체 가져오기.
-			Context ctx= new InitialContext();
-			DataSource source=(DataSource)ctx.lookup("java:comp/env/SPRING");
+			//Context ctx= new InitialContext();
+			//DataSource source=(DataSource)ctx.lookup("java:comp/env/SPRING");
+			DataSource source= (DataSource)context.getAttribute("DataSource");
 			conn= source.getConnection();
 			System.out.println(conn);
 		}
-		catch(NamingException|SQLException e) {e.printStackTrace();}
+		catch(SQLException e) {e.printStackTrace();}
 	}
 	@Override
 	public void close() {
@@ -70,11 +71,8 @@ public class SingInDAO implements DaoService<UserDTO>{
 			psmt.setString(8, dto.getSelf());
 			affected=psmt.executeUpdate();
 			//입력된 행의 키값 가져오기			
-			rs=psmt.getGeneratedKeys();
-			if(rs.next()) {
-				System.out.println("방금 입력한 행의 키값:"+rs.getLong(1));
-			}
-			conn.commit();
+			
+			conn.close();
 		
 		}
 		catch(SQLException e) {

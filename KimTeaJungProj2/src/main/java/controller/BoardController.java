@@ -20,7 +20,7 @@ import service.BoardDAO;
 public class BoardController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		BoardDAO dao=new BoardDAO();
+		BoardDAO dao=new BoardDAO(getServletContext());
 		Map map = new HashMap();
 		util.PagingUtil.setMapForPaging(map, dao, req);
 		int totalRecordCount=Integer.parseInt(map.get("totalRecordCount").toString());
@@ -33,13 +33,14 @@ public class BoardController extends HttpServlet{
 		
 		
 		List<BoardDTO> records= dao.selectList(map);
+		dao.close();
 		//라]결과값이 있으면 리퀘스트 영역에 저장
 		req.setAttribute("records", records);
 		req.setAttribute("pagingString", pagingString);
 		//마]결과값을 뿌려줄 뷰(JSP페이지) 선택후 포워딩 
 		//뷰선택]
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/homepage/BoardList.jsp");
+		req.getRequestDispatcher("/homepage/BoardList.jsp").forward(req, resp);
 		//포워딩]
-		dispatcher.forward(req, resp);
+		
 	}
 }
