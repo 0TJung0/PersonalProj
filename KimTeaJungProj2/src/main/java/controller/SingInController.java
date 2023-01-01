@@ -6,13 +6,13 @@ import java.util.Arrays;
 
 import javax.swing.plaf.synth.SynthPasswordFieldUI;
 
-import data.UserDTO;
+import model.UserDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.SingInDAO;
+import model.SingInDAO;
 import util.HashPass;
 
 @WebServlet("/Login/SingIn.do")

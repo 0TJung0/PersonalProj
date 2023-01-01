@@ -3,7 +3,7 @@ package controller;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-import data.UserDTO;
+import model.UserDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import service.SingInDAO;
+import model.SingInDAO;
 import util.HashPass;
 
 @WebServlet("/Login/LoginProgress.do")
@@ -35,7 +35,8 @@ public class LoginProgressController extends HttpServlet {
 		if(check) {
 			
 			HttpSession session=req.getSession();
-			session.setAttribute("USER-EMAIL", email);
+			session.setAttribute("USER_EMAIL", email);
+			System.out.println(session.getAttribute("USER_EMAIL"));
 			Cookie cookie=new Cookie("email", email);
 			resp.addCookie(cookie);
 			req.getRequestDispatcher("/homepage/HomePage.jsp").forward(req, resp);

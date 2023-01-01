@@ -26,7 +26,7 @@ public class AuthenticationFilter  extends HttpFilter implements Filter {
 		System.out.println("인증필터-사전작업(로그인 여부 판단)");
 		//여기서 로그인 확인
 		HttpServletRequest req=(HttpServletRequest)request;
-		Object checkLogin=req.getSession().getAttribute("USER-EMAIL");
+		Object checkLogin=req.getSession().getAttribute("USER_EMAIL");
 		if(checkLogin ==null) {
 			/*
 			HttpServletResponse resp =(HttpServletResponse)response;

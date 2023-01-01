@@ -88,16 +88,9 @@
 					<div class="text-center p-t-46 p-b-20">
 						<span class="txt2">
 						    <a href="<c:url value="/Login/SingIn.do"/>">회원가입</a>
-							<button class="api-btn" onclick="<c:url value="/Login/FindPassword.do"/>">/ 비밀번호찾기</button>
 						</span>
 					</div>
-					 <!-- Social Login -->
-	                 <div class="form-group mx-auto">
-	                     <a id="kakao-login-btn" class="btn d-flex justify-content-center">
-						  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-						    alt="카카오 로그인 버튼" />
-						 </a>
-	                 </div>
+					 
 	                 
 				</form>
 			

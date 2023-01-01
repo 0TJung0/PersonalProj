@@ -1,80 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="en">
+  <!-- ${pageContext.request.contextPath} -->
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login.jsp</title>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<!-- https://developers.google.com/fonts/docs/material_icons -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<script
-	src="<%=request.getContextPath()%>/bootstrap/js/jquery.slim.min.js"></script>
-<script src="<%=request.getContextPath()%>/bootstrap/js/popper.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.bundle.min.js"></script>
-<style>
-.jumbotron {
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-	margin-bottom: .5rem;
-}
-</style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dewi Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assetsmain/img/favicon.png" rel="icon">
+  <link href="../assetsmain/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assetsmain/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assetsmain/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assetsmain/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assetsmain/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assetsmain/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assetsmain/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assetsmain/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assetsmain/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Dewi - v4.10.0
+  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
+
 <body>
 
-	<nav class="navbar navbar-expand-sm bg-secondary navbar-dark fixed-top">
-		<a class="navbar-brand" href="#"> <i class="material-icons"
-			style="font-size: 2rem">home</i>
-		</a>
-		<% if(request.getAttribute("NOT-LOGIN") != null){ %>
-		<span class="badge badge-danger"><%=request.getAttribute("NOT-LOGIN") %></span>
-		<%} %>
-		<!-- Toggler/collapsibe Button -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbar-link">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
 
-		<div class="collapse navbar-collapse justify-content-end"
-			id="navbar-link">
-			<ul class="navbar-nav">
+      <h1 class="logo"><a href="<c:url value="/Home/Homepage.do"/>">Jung</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-				<li class="nav-item">
-				<%if(session.getAttribute("USER-ID")==null){ %>
-				<a class="nav-link active" href="<%=request.getContextPath()%>/session06/Login.jsp">로그인</a>
-				<%}else{ %>
-				<a class="nav-link active" href="<%=request.getContextPath()%>/session06/Logout.jsp">로그아웃</a>
-				<%} %>
-				</li>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="<c:url value="/Notice/Board.do"/>">게시판</a></li>
+          <li><a class="nav-link scrollto" href="<c:url value="/MyPage/MyPageHome.do"/>">MyPage</a></li>
+          <li><a class="getstarted scrollto text-info" href="<c:url value="/Logout.do"/>">LogOut</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
-				<li class="nav-item"><a class="nav-link" href="<c:url value="/session06/MyPage.jsp"/>">마이페이지</a></li>
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/bbs08/List.jsp">게시판</a></li>
-				<li class="nav-item"><a class="nav-link" href="<c:url value="/DataRoom/List.kosmo"/>">자료실</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-						인재채용 </a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">인재상</a> <a class="dropdown-item"
-							href="#">채용정보</a> <a class="dropdown-item" href="#">입사지원</a>
-					</div></li>
-				<li class="nav-item">
-					<form class="form-inline" action="#">
-						<input class="form-control mr-sm-2 mt-1" type="text"
-							placeholder="검색어 입력">
-						<button class="btn btn-success mt-1" type="submit">확인</button>
-
-					</form>
-				</li>
-			</ul>
-		</div>
-	</nav>
-	
-	
+    </div>
+  </header><!-- End Header -->

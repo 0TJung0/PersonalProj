@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-import data.BoardDTO;
+import model.BoardDTO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import service.BoardDAO;
+import model.BoardDAO;
 
 @WebServlet("/Notice/Board.do")
 public class BoardController extends HttpServlet{
@@ -33,13 +33,15 @@ public class BoardController extends HttpServlet{
 		
 		
 		List<BoardDTO> records= dao.selectList(map);
-		dao.close();
+		
 		//라]결과값이 있으면 리퀘스트 영역에 저장
 		req.setAttribute("records", records);
 		req.setAttribute("pagingString", pagingString);
+		System.out.println(pagingString);
 		//마]결과값을 뿌려줄 뷰(JSP페이지) 선택후 포워딩 
 		//뷰선택]
-		req.getRequestDispatcher("/homepage/BoardList.jsp").forward(req, resp);
+		dao.close();
+		req.getRequestDispatcher("/homepage/board/BoardList.jsp").forward(req, resp);
 		//포워딩]
 		
 	}

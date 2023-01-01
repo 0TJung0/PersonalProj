@@ -11,11 +11,11 @@ xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/n
   <display-name>Welcome to Tomcat</display-name>
   <context-param>
     <param-name>PAGE-SIZE</param-name>
-    <param-value>5</param-value>
+    <param-value>10</param-value>
   </context-param>
   <context-param>
     <param-name>BLOCK-PAGE</param-name>
-    <param-value>3</param-value>
+    <param-value>5</param-value>
   </context-param>
   <context-param>
     <param-name>JNDI-ROOT</param-name>
